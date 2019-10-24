@@ -1,8 +1,8 @@
-# RainJackets
+# Rain Jackets
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rain_jackets`. To experiment with that code, run `bin/console` for an interactive prompt.
+**This is a CLI gem designed by jacqueline-lam.** 
 
-TODO: Delete this and the text above, and describe your gem
+The Ruby Gem provides a CLI to view the best rain jackets of 2019 according to the Outdoor Gear Lab website.
 
 ## Installation
 
@@ -22,7 +22,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the below and follow the on screen prompts.
+
+```$ rain-jackets```
 
 ## Development
 
