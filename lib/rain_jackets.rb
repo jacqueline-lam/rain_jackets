@@ -10,6 +10,8 @@ require_relative './rain_jackets/cli'
 
 ### NAMESPACE MODULE ###
 module RainJackets
-  class Error < StandardError; end
+  # class Error < StandardError; end
+  module CLI
+  module Scraper
   # Your code goes here...
 end
