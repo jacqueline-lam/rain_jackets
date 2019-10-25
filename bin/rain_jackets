@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/rain_jackets'
+require_relative '../lib/rain_jackets/cli.rb'
+require_relative '../lib/rain_jackets/scraper.rb'
 
 RainJackets::CLI.new.call
