@@ -1,0 +1,3 @@
+class RainJackets::CLI
+
+end
