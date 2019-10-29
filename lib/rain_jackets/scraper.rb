@@ -62,30 +62,27 @@ class RainJackets::Scraper
         end
       
       # Rating categories (tr_index 11-14): water_resistance_rating, breathability_rating, comfort_rating, weight_rating, packed_size_rating
-      elsif tr_index == 9
+      elsif (9..14).includes?(tr_index)
         tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
-          all_jackets[rating_row_index].water_resistance_rating = rating_score.text
+          jacket = all_jackets[rating_row_index]
+          rating_score = rating_score.text
+  
+          if tr_index == 9
+            jacket.water_resistance_rating = rating_score
+          elsif tr_index == 10
+            jacket.breathability_rating = rating_score
+          elsif tr_index == 11
+            jacket.comfort_rating = rating_score
+          elsif tr_index == 12
+            jacket.weight_rating = rating_score
+          elsif tr_index == 13
+            jacket.durability_rating = rating_score
+          elsif tr_index == 14
+            jacket.packed_size_rating = rating_score
+          end
+  
+          all_jackets[rating_row_index] = jacket
         end
-      elsif tr_index == 10
-        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
-          all_jackets[rating_row_index].breathability_rating = rating_score.text
-        end
-      elsif tr_index == 11
-        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
-          all_jackets[rating_row_index].comfort_rating = rating_score.text
-        end
-      elsif tr_index == 12
-        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
-          all_jackets[rating_row_index].weight_rating = rating_score.text
-        end
-      elsif tr_index == 13
-        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
-          all_jackets[rating_row_index].durability_rating = rating_score.text
-        end
-      elsif tr_index == 14
-        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
-          all_jackets[rating_row_index].packed_size_rating = rating_score.text
-        end    
       end # elsif statement
       
       
