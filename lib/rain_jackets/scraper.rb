@@ -39,9 +39,23 @@ class RainJackets::Scraper
           # rating_score.text is an Intergerç
           all_jackets[rating_row_index].overall_score = rating_score.text
         end
-      end #elsif statement
       
-    end 
-  end #ends initialize_jacket_objects
+      # Pros
+      elsif tr_index == 5
+        pros_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
+          td_value = td_element.text
+          all_jackets[td_index].pros = td_value
+        end
+  
+      # Cons
+      elsif tr_index == 6
+        pros_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
+          td_value = td_element.text
+          all_jackets[td_index].cons = td_value
+        end
+      
+      end #elsif statement
+    end #scrape_jacket_table enumerator 
+  end #initialize_jacket_objects
   
 end #ends Scraper class
