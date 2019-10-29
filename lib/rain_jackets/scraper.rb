@@ -60,6 +60,32 @@ class RainJackets::Scraper
           td_value = td_element.text
           all_jackets[td_index].description = td_value
         end
+      
+      # Rating categories (tr_index 11-14): water_resistance_rating, breathability_rating, comfort_rating, weight_rating, packed_size_rating
+      elsif tr_index == 9
+        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
+          all_jackets[rating_row_index].water_resistance_rating = rating_score.text
+        end
+      elsif tr_index == 10
+        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
+          all_jackets[rating_row_index].breathability_rating = rating_score.text
+        end
+      elsif tr_index == 11
+        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
+          all_jackets[rating_row_index].comfort_rating = rating_score.text
+        end
+      elsif tr_index == 12
+        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
+          all_jackets[rating_row_index].weight_rating = rating_score.text
+        end
+      elsif tr_index == 13
+        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
+          all_jackets[rating_row_index].durability_rating = rating_score.text
+        end
+      elsif tr_index == 14
+        tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
+          all_jackets[rating_row_index].packed_size_rating = rating_score.text
+        end    
       end #elsif statement
       
       
