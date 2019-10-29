@@ -54,7 +54,15 @@ class RainJackets::Scraper
           all_jackets[td_index].cons = td_value
         end
       
+      # Desciption
+      elsif tr_index == 7
+        description_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
+          td_value = td_element.text
+          all_jackets[td_index].description = td_value
+        end
       end #elsif statement
+      
+      
     end #scrape_jacket_table enumerator 
   end #initialize_jacket_objects
   
