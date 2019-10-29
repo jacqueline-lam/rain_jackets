@@ -1,0 +1,4 @@
+class RainJackets::Jacket
+
+  
+end
