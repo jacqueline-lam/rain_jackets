@@ -86,10 +86,9 @@ class RainJackets::Scraper
         tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
           all_jackets[rating_row_index].packed_size_rating = rating_score.text
         end    
-      end #elsif statement
+      end # elsif statement
       
       
-    end #scrape_jacket_table enumerator 
-  end #initialize_jacket_objects
-  
-end #ends Scraper class
+    end # scrape_jacket_table enumerator 
+  end # initialize_jacket_objects
+end # ends Scraper class
