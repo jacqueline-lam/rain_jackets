@@ -19,7 +19,7 @@ class RainJackets::Scraper
         product_name_row = tr_element.css("div.compare_product_name")
         
         product_name_row.each do |td_element|
-          new_jacket = Jacket.new
+          new_jacket = RainJackets::Jacket.new
           new_jacket.name = td_element.text
           new_jacket.url = td_element.css("a").first.attributes["href"].value
           all_jackets << new_jacket
@@ -27,7 +27,7 @@ class RainJackets::Scraper
       
       # Product Price
       elsif tr_index == 2
-        product_price_row = tr_element.css("td.compare_items span").each_wtih_index do |td_element, td_index|
+        product_price_row = tr_element.css("td.compare_items span").each_with_index do |td_element, td_index|
           td_value = td_element.text
           all_jackets[td_index].price = td_value #price in string "$149.93"
         end
@@ -37,7 +37,7 @@ class RainJackets::Scraper
         overall_rating_row = tr_element.css("div.rating_score")
         overall_rating_row.each_with_index do |rating_score, rating_row_index|
           # rating_score.text is an Intergerç
-          all_jackets[rating_row_index].overall_score = rating_score.text
+          all_jackets[rating_row_index].overall_rating = rating_score.text
         end
       
       # Pros
@@ -62,7 +62,7 @@ class RainJackets::Scraper
         end
       
       # Rating categories (tr_index 11-14): water_resistance_rating, breathability_rating, comfort_rating, weight_rating, packed_size_rating
-      elsif (9..14).includes?(tr_index)
+      elsif (9..14).include?(tr_index)
         tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
           jacket = all_jackets[rating_row_index]
           rating_score = rating_score.text
@@ -84,8 +84,8 @@ class RainJackets::Scraper
           all_jackets[rating_row_index] = jacket
         end
       end # elsif statement
-      
-      
     end # scrape_jacket_table enumerator 
+    
+    return all_jackets
   end # initialize_jacket_objects
 end # ends Scraper class
