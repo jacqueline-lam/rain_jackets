@@ -1,14 +1,14 @@
 class RainJackets::Scraper
 
-  def get_page
+  def self.get_page
     Nokogiri::HTML(open("https://www.outdoorgearlab.com/topics/clothing-womens/best-rain-jacket-womens"))
   end
   
-  def scrape_jackets_table
+  def self.scrape_jackets_table
     self.get_page.css("div.content_table_xwide tr")
   end
   
-  def initialize_jacket_objects
+  def self.initialize_jacket_objects
     all_jackets = []
     # Determines which row you're on, hence which property you're trying to populate
     scrape_jackets_table.each_with_index do |tr_element, tr_index|
