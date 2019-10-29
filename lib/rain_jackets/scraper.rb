@@ -5,7 +5,7 @@ class RainJackets::Scraper
   end
   
   def scrape_jackets_table
-    self.get_page.css("div.content_table_xwide.compare_table tbody")
+    self.get_page.css("div.content_table_xwide tr")
   end
   
 end
