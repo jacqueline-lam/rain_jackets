@@ -24,7 +24,23 @@ class RainJackets::Scraper
           new_jacket.url = td_element.css("a").first.attributes["href"].value
           all_jackets << new_jacket
         end
-      end
+      
+      # Product Price
+      elsif tr_index == 2
+        product_price_row = tr_element.css("td.compare_items span").each_wtih_index do |td_element, td_index|
+          td_value = td_element.text
+          all_jackets[td_index].price = td_value #price in string "$149.93"
+        end
+  
+      # Overall score
+      elsif tr_index == 3
+        overall_rating_row = tr_element.css("div.rating_score")
+        overall_rating_row.each_with_index do |rating_score, rating_row_index|
+          # rating_score.text is an Intergerç
+          all_jackets[rating_row_index].overall_score = rating_score.text
+        end
+      end #elsif statement
+      
     end 
   end #ends initialize_jacket_objects
   
