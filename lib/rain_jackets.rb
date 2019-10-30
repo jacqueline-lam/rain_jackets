@@ -6,6 +6,9 @@ require 'pry'
 ### REQUIRED FILES ###
 require_relative './rain_jackets/version'
 require_relative './rain_jackets/cli'
+require_relative './rain_jackets/scraper'
+require_relative './rain_jackets/jacket'
+
 
 
 ### NAMESPACE MODULE ###
