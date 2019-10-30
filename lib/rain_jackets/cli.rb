@@ -2,7 +2,7 @@ class RainJackets::CLI
   attr_accessor :jackets
   
   def initialize
-    self.jackets = RainJackets::Scraper.initialize_jacket_objects(self)
+    @jackets = RainJackets::Scraper.initialize_jacket_objects(self)
   end
  
   def call #test

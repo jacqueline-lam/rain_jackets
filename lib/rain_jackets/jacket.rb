@@ -2,12 +2,12 @@ class RainJackets::Jacket
   attr_accessor :name, :url, :price, :description, :pros, :cons, :overall_rating, :water_resistance_rating, :breathability_rating, :comfort_rating, :weight_rating, :durability_rating, :packed_size_rating
   attr_accessor :cli
   
-  @@jackets = []
+  @@all = []
   
   # Take in an argument of an array and sets new jacket's attributes
   def initialize(cli_ref)
     self.cli = cli_ref
-    @@jackets << self
+    @@all << self
   end
 
   # Uses Scraper class to create new jacket
@@ -20,6 +20,6 @@ class RainJackets::Jacket
   # end
   
   def self.all
-    return @@jackets
+    return @@all
   end
 end
