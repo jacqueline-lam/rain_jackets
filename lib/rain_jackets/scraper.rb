@@ -32,7 +32,7 @@ class RainJackets::Scraper
           all_jackets[td_index].price = td_value #price in string "$149.93"
         end
   
-      # Overall score
+      # Overall rating
       elsif tr_index == 3
         overall_rating_row = tr_element.css("div.rating_score")
         overall_rating_row.each_with_index do |rating_score, rating_row_index|

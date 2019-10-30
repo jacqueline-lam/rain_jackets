@@ -9,6 +9,8 @@ class RainJackets::CLI
   def call 
     input = ""
     while input != "exit"
+      puts "========================================================="
+      puts "MENU:"
       puts "To see all the best rain jackets, enter 'list all'."
       puts "To list rain jackets by overall rating, enter 'list by ratings'."
       puts "To see all info about a specific jacket, enter jacket by '1-5'."
@@ -17,11 +19,13 @@ class RainJackets::CLI
         # description 
         # url
         # rating categories 
+      puts "========================================================="
     
-      input = gets.chomp
-      if input == "list all"
-        @jackets.each_with_index(1) do |jacket, i|
-          puts "#{i}. #{jacket.name} - Price: #{jacket.price} - Overall Rating: #{jacket.overal_rating}"
+      input = gets.strip
+      if input.downcase == "list all"
+        puts "Best Rain Jackets of 2019:"
+        @jackets.each_with_index do |jacket, i|
+          puts "#{(i+1).to_s}. #{jacket.name} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
         end
       #elsif input = 'list by ratings'
       #elsif input = '1' #jacket 1
