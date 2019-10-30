@@ -6,7 +6,7 @@ class RainJackets::Jacket
   
   # Take in an argument of an array and sets new jacket's attributes
   def initialize(cli_ref)
-    self.cli = cli_ref
+    @cli = cli_ref
     @@all << self
   end
 
@@ -22,4 +22,5 @@ class RainJackets::Jacket
   def self.all
     return @@all
   end
+  
 end
