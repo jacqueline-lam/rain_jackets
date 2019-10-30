@@ -21,7 +21,7 @@ class RainJackets::Scraper
         product_name_row.each do |td_element|
           new_jacket = RainJackets::Jacket.new
           new_jacket.name = td_element.text
-          new_jacket.url = td_element.css("a").first.attributes["href"].value
+          new_jacket.url = "https://www.outdoorgearlab.com" + td_element.css("a").first.attributes["href"].value
           all_jackets << new_jacket
         end
       
