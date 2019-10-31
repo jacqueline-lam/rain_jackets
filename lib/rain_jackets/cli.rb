@@ -7,11 +7,13 @@ class RainJackets::CLI
     print_menu
   end
  
+  # Initiates call procedure to get user input 
   def call 
     input = gets.chomp
     handle_input(input)
   end    
   
+  # Handles the user pint
   def handle_input(input)  
     if input == "list all"
       print_list_all
@@ -28,14 +30,18 @@ class RainJackets::CLI
       exit
       
     else #- make sure that the program doesn't break when user's input is unexpected
-      print_menu
+      puts "I don't understand that answer. Please try again" 
     end
+    
+    print_menu 
+    call #reinitiate call loop at the end of non-exited handle_input logic
   end
   
   def print_list_all
     puts "Best Rain Jackets of 2019:"
       @jackets.each_with_index do |jacket, i|
         puts "#{(i+1).to_s}. #{jacket.name} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
+        puts ""
       end
   end
   
@@ -52,14 +58,15 @@ class RainJackets::CLI
     puts "  - Comfort: #{jacket.comfort_rating}"
     puts "  - Weight: #{jacket.weight_rating}"
     puts "  - Durability: #{jacket.durability_rating}"
-    puts "  - Packed_Size: #{jacket.packed_size_rating}"
+    puts "  - Packed Size: #{jacket.packed_size_rating}"
+    puts ""
   end
   
   def print_menu 
      puts "============================ MENU ============================="
-      puts "To see all the best rain jackets, enter 'list all'."
-      puts "To list rain jackets by overall rating, enter 'list by ratings'."
-      puts "To see all info about a specific jacket, enter jacket by '1-5'."
+      puts "List all jackets: enter 'list all'."
+      puts "More information about a specific jacket, enter jacket by '1-5'."
+      puts "List ranking by speific rating category: enter "
       puts "==============================================================="
   end
 end
