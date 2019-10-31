@@ -4,9 +4,15 @@ class RainJackets::CLI
   def initialize
     @jackets = RainJackets::Scraper.initialize_jacket_objects
     puts "Welcome to the Best Rain Jackets Rater!"
-    print_menu
+    prompt_user_input
   end
  
+  def prompt_user_input
+    puts "What would you like to do?"
+    puts "Enter 'menu': to see more commands / 'exit' to exit program."
+    call
+  end
+  
   # Initiates call procedure to get and handle user input
   def call 
     input = gets.chomp.strip
@@ -26,6 +32,9 @@ class RainJackets::CLI
     elsif (1..5).include?(input.to_i) 
       print_selected_jacket(input.to_i)
       
+    elsif input == "menu"
+      print_menu
+    
     elsif input == "exit"
       exit
       
@@ -33,7 +42,7 @@ class RainJackets::CLI
       puts "I don't understand that answer. Please try again" 
     end
     
-    print_menu 
+    prompt_user_input 
     call #reinitiate call loop at the end of non-exited handle_input logic
   end
   

@@ -7,15 +7,6 @@ class RainJackets::Jacket
   def initialize
     @@all << self
   end
-
-  # Uses Scraper class to create new jacket
-  # def self.create_from_collection(jackets_array)
-  # ## Iterate over array of jackets and create a 
-  #   # new individual jacket using each index
-  #   jackets_array.each do |jacket_instance|
-  #     jacket_instance = RainJackets::Jacket.new
-  #   end
-  # end
   
   def self.all
     return @@all
