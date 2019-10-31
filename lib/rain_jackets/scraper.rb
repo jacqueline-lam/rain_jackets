@@ -8,7 +8,7 @@ class RainJackets::Scraper
     self.get_page.css("div.content_table_xwide tr")
   end
   
-  def self.initialize_jacket_objects(cli_ref)
+  def self.initialize_jacket_objects
     all_jackets = []
     # Determines which row you're on, hence which property you're trying to populate
     scrape_jackets_table.each_with_index do |tr_element, tr_index|
@@ -19,7 +19,7 @@ class RainJackets::Scraper
         product_name_row = tr_element.css("div.compare_product_name")
         
         product_name_row.each do |td_element|
-          new_jacket = RainJackets::Jacket.new(cli_ref)
+          new_jacket = RainJackets::Jacket.new
           new_jacket.name = td_element.text
           new_jacket.url = "https://www.outdoorgearlab.com" + td_element.css("a").first.attributes["href"].value
           all_jackets << new_jacket

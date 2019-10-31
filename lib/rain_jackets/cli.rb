@@ -2,7 +2,7 @@ class RainJackets::CLI
   attr_accessor :jackets
   
   def initialize
-    @jackets = RainJackets::Scraper.initialize_jacket_objects(self)
+    @jackets = RainJackets::Scraper.initialize_jacket_objects
     puts "Welcome to the Best Rain Jackets Rater!"
   end
  
@@ -39,7 +39,7 @@ class RainJackets::CLI
         puts "- Pros: #{@jackets[input-1].pros}"
         puts "- Cons: #{@jackets[input-1].cons}"
         puts "- URL: #{@jackets[input-1].url}"
-        puts - "Rating Categories: Water Resistance: #{@jackets[input-1].water_resistance_rating}; Breathability: #{@jackets[input-1].breathability_rating}; Comfort: #{@jackets[input-1].comfort_rating}; Weight: #{@jackets[input-1].weight_rating}; Durability: #{@jackets[input-1].:durability_rating}; Packed_Size: #{@jackets[input-1].packed_size_rating}"
+        puts - "Rating Categories: Water Resistance: #{@jackets[input-1].water_resistance_rating}; Breathability: #{@jackets[input-1].breathability_rating}; Comfort: #{@jackets[input-1].comfort_rating}; Weight: #{@jackets[input-1].weight_rating}; Durability: #{@jackets[input-1].durability_rating}; Packed_Size: #{@jackets[input-1].packed_size_rating}"
         
         
       #when '2' - '5' #jacket 1-5 specified
