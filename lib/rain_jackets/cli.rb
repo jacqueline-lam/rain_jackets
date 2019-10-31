@@ -7,15 +7,15 @@ class RainJackets::CLI
     print_menu
   end
  
-  # Initiates call procedure to get user input 
+  # Initiates call procedure to get and handle user input
   def call 
-    input = gets.chomp
+    input = gets.chomp.strip
     handle_input(input)
   end    
   
   # Handles the user pint
   def handle_input(input)  
-    if input == "list all"
+    if input == "all"
       print_list_all
       
     # elsif 'list by ratings'
@@ -40,33 +40,39 @@ class RainJackets::CLI
   def print_list_all
     puts "Best Rain Jackets of 2019:"
       @jackets.each_with_index do |jacket, i|
-        puts "#{(i+1).to_s}. #{jacket.name} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
-        puts ""
+        puts "#{(i+1).to_s}. #{jacket.name.split(" - ").first} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
       end
   end
   
   def print_selected_jacket(jacket_number)
     jacket = @jackets[jacket_number - 1]
-    puts "--------------- #{jacket.name} --------------------"
-    puts "Jacket Description: #{jacket.description}"
-    puts "Pros: #{jacket.pros}"
-    puts "Cons: #{jacket.cons}"
-    puts "URL: #{jacket.url}"
-    puts "Rating Categories:"
-    puts "  - Water Resistance: #{jacket.water_resistance_rating}"
+    puts "--------------- #{jacket.name} ---------------"
+    puts "• Jacket Description: #{jacket.description}"
+    puts "• Pros: #{jacket.pros}"
+    puts "• Cons: #{jacket.cons}"
+    puts "• URL: #{jacket.url}"
+    puts "• Rating Categories:"
+    puts "   - Water Resistance: #{jacket.water_resistance_rating}"
     puts "  - Breathability: #{jacket.breathability_rating}"
     puts "  - Comfort: #{jacket.comfort_rating}"
     puts "  - Weight: #{jacket.weight_rating}"
     puts "  - Durability: #{jacket.durability_rating}"
     puts "  - Packed Size: #{jacket.packed_size_rating}"
-    puts ""
+    puts "--------------------------------------------------------------"
   end
   
   def print_menu 
-     puts "============================ MENU ============================="
-      puts "List all jackets: enter 'list all'."
-      puts "More information about a specific jacket, enter jacket by '1-5'."
-      puts "List ranking by speific rating category: enter "
-      puts "==============================================================="
+    puts "========================== MENU ==============================="
+    puts "• List all jackets -> enter 'all'"
+    puts "• More information on specific jacket -> enter jacket #'1-5'"
+    puts "• List jackets by speific rating category -> enter:"
+    puts "  'wr' for Water Resistance"
+    puts "  'b' for Brethability"
+    puts "  'c' for Comfort"
+    puts "  'w' for Weight"
+    puts "  'd' for Durability"
+    puts "  'ps' for Packed Size" 
+    puts "• Exit program -> enter 'exit'"
+    puts "==============================================================="
   end
 end
