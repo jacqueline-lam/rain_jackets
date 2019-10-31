@@ -24,15 +24,11 @@ class RainJackets::CLI
     elsif (1..5).include?(input.to_i) 
       print_selected_jacket(input.to_i)
       
+    elsif input == "exit"
+      exit
       
-    #when '2' - '5' #jacket 1-5 specified
-      # list pros
-      # list cons
-      # list description
-      # list url
-      # list rating categories 
-    
-    #else - make sure that the program doesn't break when user's input is unexpected
+    else #- make sure that the program doesn't break when user's input is unexpected
+      print_menu
     end
   end
   
@@ -44,11 +40,19 @@ class RainJackets::CLI
   end
   
   def print_selected_jacket(jacket_number)
-    puts "- Jacket Description: #{@jackets[input-1].description}"
-    puts "- Pros: #{@jackets[input-1].pros}"
-    puts "- Cons: #{@jackets[input-1].cons}"
-    puts "- URL: #{@jackets[input-1].url}"
-    puts - "Rating Categories: Water Resistance: #{@jackets[input-1].water_resistance_rating}; Breathability: #{@jackets[input-1].breathability_rating}; Comfort: #{@jackets[input-1].comfort_rating}; Weight: #{@jackets[input-1].weight_rating}; Durability: #{@jackets[input-1].durability_rating}; Packed_Size: #{@jackets[input-1].packed_size_rating}"
+    jacket = @jackets[jacket_number - 1]
+    puts "--------------- #{jacket.name} --------------------"
+    puts "Jacket Description: #{jacket.description}"
+    puts "Pros: #{jacket.pros}"
+    puts "Cons: #{jacket.cons}"
+    puts "URL: #{jacket.url}"
+    puts "Rating Categories:"
+    puts "  - Water Resistance: #{jacket.water_resistance_rating}"
+    puts "  - Breathability: #{jacket.breathability_rating}"
+    puts "  - Comfort: #{jacket.comfort_rating}"
+    puts "  - Weight: #{jacket.weight_rating}"
+    puts "  - Durability: #{jacket.durability_rating}"
+    puts "  - Packed_Size: #{jacket.packed_size_rating}"
   end
   
   def print_menu 
