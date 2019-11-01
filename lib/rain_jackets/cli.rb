@@ -95,10 +95,6 @@ class RainJackets::CLI
   end
   
   def print_ratings(input)
-    # rating_category = read_rating_input(input)
-    # jackets_by_rating = RainJackets::Jacket.sort_rating_desc(rating_category)
-    # rating_category_name = rating_category.gsub('_', ' ').split.map{|word| word.capitalize}.join(" ")
-    
     rating_attribute = read_rating_input(input)
     jackets_sorted_by_rating = @jackets.sort_by { |jacket| jacket.send(rating_attribute) }.reverse
     rating_category_name = rating_attribute.split('_').map(&:capitalize).join(' ')
