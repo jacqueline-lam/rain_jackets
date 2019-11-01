@@ -12,4 +12,8 @@ class RainJackets::Jacket
     return @@all
   end
   
+  def self.sort_rating_desc(rating_cat)
+    ranking = @@all.sort{|left, right| right.water_resistance_rating <=> left.water_resistance_rating}
+  end
+  
 end

@@ -27,7 +27,7 @@ class RainJackets::CLI
     elsif (1..5).include?(input.to_i) 
       print_selected_jacket(input.to_i)
       
-    elsif ['wr', 'b', 'c', 'w', 'd', 'ps'].include(input.downcase)
+    elsif ['wr', 'b', 'c', 'w', 'd', 'ps'].include?(input.downcase)
       print_ratings(input.downcase)
     
     elsif input == "menu"
@@ -73,24 +73,32 @@ class RainJackets::CLI
     puts "-----------------------------------------------------------------"
   end
   
-  def print_rating_category(rating_input)
-    if rating_input == 'wr'
+  def read_rating_input(input)
+    if input == 'wr'
       rating_category = "water_resistance_rating"
-    elsif rating_input == 'b'
+    elsif input == 'b'
       rating_category = "'br'"
-    elsif rating_input == 'c'
+    elsif input == 'c'
       rating_category = "comfort_rating"
-    elsif rating_input == 'w'
+    elsif input == 'w'
       rating_category = "weight_rating"
-    elsif rating_input == 'd'
+    elsif input == 'd'
       rating_category = "durability_rating"
-    elsif rating_input == 'ps'
+    elsif input == 'ps'
       rating_category = "packed_size_rating"
     else
-      puts "Please try again. Input 1 - 6"
-      rating_input = gets.chomp.to_i
+      puts "Incorrect input. Please try again."
+      prompt_user_input
     end
-
+    rating_category
+  end
+  
+  def print_ratings(input)
+    rating_category = read_rating_input(input)
+    jackets_by_rating = RainJackets::Jacket.sort_rating_desc(rating_category)
+    jackets_by_rating.map do |jacket|
+      puts "#{jacket.name} - #{rating_category.gsub('_', ' ').capitalize}:  #{jacket.water_resistance_rating}"
+    end
   end
   
   # Display all menu commands
