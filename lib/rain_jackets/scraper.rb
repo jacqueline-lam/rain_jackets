@@ -83,9 +83,9 @@ class RainJackets::Scraper
   
           all_jackets[rating_row_index] = jacket
         end
-      end # elsif statement
-    end # scrape_jacket_table enumerator 
+      end 
+    end  
     
-    return all_jackets
-  end # initialize_jacket_objects
-end # ends Scraper class
+    all_jackets
+  end 
+end 

@@ -9,7 +9,7 @@ class RainJackets::Jacket
     @@all << self
   end
   
-  def self.all
+  def self.all # Class method to expose variable @@all
     return @@all
   end
   

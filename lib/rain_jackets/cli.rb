@@ -77,7 +77,7 @@ class RainJackets::CLI
     if input == 'wr'
       rating_category = "water_resistance_rating"
     elsif input == 'b'
-      rating_category = "'br'"
+      rating_category = "'breathability_rating'"
     elsif input == 'c'
       rating_category = "comfort_rating"
     elsif input == 'w'
