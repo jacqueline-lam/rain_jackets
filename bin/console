@@ -2,10 +2,7 @@
 
 require "bundler/setup"
 require "rain_jackets"
-require_relative '../lib/rain_jackets'
-require_relative '../lib/rain_jackets/cli'
-require_relative '../lib/rain_jackets/scraper'
-require_relative '../lib/rain_jackets/jacket'
+require_relative "../config/environment"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
