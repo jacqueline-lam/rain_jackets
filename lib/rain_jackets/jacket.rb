@@ -1,5 +1,6 @@
 class RainJackets::Jacket
-  attr_accessor :name, :url, :price, :description, :pros, :cons, :overall_rating, :water_resistance_rating, :breathability_rating, :comfort_rating, :weight_rating, :durability_rating, :packed_size_rating
+  attr_accessor :name, :url, :price, :description, :pros, :cons, :overall_rating
+  attr_accessor :water_resistance_rating, :breathability_rating, :comfort_rating, :weight_rating, :durability_rating, :packed_size_rating, :rating_category
   
   @@all = []
   
@@ -13,7 +14,8 @@ class RainJackets::Jacket
   end
   
   def self.sort_rating_desc(rating_cat)
-    ranking = @@all.sort{|left, right| right.water_resistance_rating <=> left.water_resistance_rating}
+    @rating_category = rating_cat
+    ranking = @@all.sort{|left, right| right.rating_category <=> left.rating_category}
   end
   
 end

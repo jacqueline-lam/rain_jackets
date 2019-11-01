@@ -96,9 +96,14 @@ class RainJackets::CLI
   def print_ratings(input)
     rating_category = read_rating_input(input)
     jackets_by_rating = RainJackets::Jacket.sort_rating_desc(rating_category)
-    jackets_by_rating.map do |jacket|
-      puts "#{jacket.name} - #{rating_category.gsub('_', ' ').capitalize}:  #{jacket.water_resistance_rating}"
+    
+    rating_category_name = rating_category.gsub('_', ' ').split.map{|word| word.capitalize}.join(" ")
+    
+    puts "-------------Best Jackets Ranked by #{rating_category_name} ------------------"
+    jackets_by_rating.each_with_index do |jacket, idx|
+      puts "#{idx + 1}. #{jacket.name} — #{jacket.water_resistance_rating}/10"
     end
+    puts "-----------------------------------------------------------------"
   end
   
   # Display all menu commands
