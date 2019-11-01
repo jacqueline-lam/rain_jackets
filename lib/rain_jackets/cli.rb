@@ -9,7 +9,7 @@ class RainJackets::CLI
  
   def prompt_user_input
     puts "What would you like to do?"
-    puts "Enter 'menu': to see more commands / 'exit' to exit program."
+    puts "Enter: 'menu' to see all commands / 'exit' to exit program."
     call
   end
   
@@ -34,8 +34,10 @@ class RainJackets::CLI
       
     elsif input == "menu"
       print_menu
+      call
     
     elsif input == "exit"
+      puts "Goodbye! Have a great day!"
       exit
       
     else #- make sure that the program doesn't break when user's input is unexpected
@@ -47,15 +49,16 @@ class RainJackets::CLI
   end
   
   def print_list_all
-    puts "Best Rain Jackets of 2019:"
+    puts "---------------------------- Best Rain Jackets of 2019: ------------------------"
       @jackets.each_with_index do |jacket, i|
-        puts "#{(i+1).to_s}. #{jacket.name.split(" - ").first} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
+        puts " #{(i+1).to_s}. #{jacket.name.split(" - ").first} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
       end
+    puts "--------------------------------------------------------------------------------"
   end
   
   def print_selected_jacket(jacket_number)
     jacket = @jackets[jacket_number - 1]
-    puts "--------------- #{jacket.name} ---------------"
+    puts "------------------- #{jacket.name} -------------------"
     puts "• Jacket Description: #{jacket.description}"
     puts "• Pros: #{jacket.pros}"
     puts "• Cons: #{jacket.cons}"
@@ -67,9 +70,10 @@ class RainJackets::CLI
     puts "  - Weight: #{jacket.weight_rating}"
     puts "  - Durability: #{jacket.durability_rating}"
     puts "  - Packed Size: #{jacket.packed_size_rating}"
-    puts "--------------------------------------------------------------"
+    puts "-----------------------------------------------------------------"
   end
   
+  # Display all menu commands
   def print_menu 
     puts "========================== MENU ==============================="
     puts "• List all jackets -> enter 'all'"
