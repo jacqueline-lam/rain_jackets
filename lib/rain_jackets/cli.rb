@@ -103,7 +103,7 @@ class RainJackets::CLI
     
     puts "-------------Best Jackets Ranked by #{rating_category_name} ------------------"
     jackets_sorted_by_rating.each_with_index do |jacket, idx|
-      puts "#{idx + 1}. #{jacket.name} — #{jacket.send(rating_attribute)}/10"
+      puts " #{idx + 1}. #{jacket.name} — #{jacket.send(rating_attribute)}/10"
     end
     puts "-----------------------------------------------------------------"
   end

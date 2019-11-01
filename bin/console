@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "rain_jackets"
 require_relative "../config/environment"
 
 # You can add fixtures and/or initialization code here to make experimenting
