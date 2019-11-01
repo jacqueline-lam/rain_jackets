@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Jacqueline Lam'"]
   spec.email         = ["'jacqueline.karin.lam@gmail.com'"]
 
-  spec.summary       = %q{Summary}
+  spec.summary       = "CLI for best rain jackets"
   spec.description   = %q{Todo}
   spec.homepage      = "https://github.com/jacqueline-lam/rain_jackets.git"
   spec.license       = "MIT"

@@ -97,6 +97,8 @@ class RainJackets::CLI
   def print_ratings(input)
     rating_attribute = read_rating_input(input)
     jackets_sorted_by_rating = @jackets.sort_by { |jacket| jacket.send(rating_attribute) }.reverse
+    
+    # Convert rating attribute name to readable capitalized title
     rating_category_name = rating_attribute.split('_').map(&:capitalize).join(' ')
     
     puts "-------------Best Jackets Ranked by #{rating_category_name} ------------------"
