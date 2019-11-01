@@ -73,11 +73,12 @@ class RainJackets::CLI
     puts "-----------------------------------------------------------------"
   end
   
+  # Converts user shortcut input to jacket attribute name as string
   def read_rating_input(input)
     if input == 'wr'
       rating_category = "water_resistance_rating"
     elsif input == 'b'
-      rating_category = "'breathability_rating'"
+      rating_category = "breathability_rating"
     elsif input == 'c'
       rating_category = "comfort_rating"
     elsif input == 'w'
@@ -94,14 +95,17 @@ class RainJackets::CLI
   end
   
   def print_ratings(input)
-    rating_category = read_rating_input(input)
-    jackets_by_rating = RainJackets::Jacket.sort_rating_desc(rating_category)
+    # rating_category = read_rating_input(input)
+    # jackets_by_rating = RainJackets::Jacket.sort_rating_desc(rating_category)
+    # rating_category_name = rating_category.gsub('_', ' ').split.map{|word| word.capitalize}.join(" ")
     
-    rating_category_name = rating_category.gsub('_', ' ').split.map{|word| word.capitalize}.join(" ")
+    rating_attribute = read_rating_input(input)
+    jackets_sorted_by_rating = @jackets.sort_by { |jacket| jacket.send(rating_attribute) }.reverse
+    rating_category_name = rating_attribute.split('_').map(&:capitalize).join(' ')
     
     puts "-------------Best Jackets Ranked by #{rating_category_name} ------------------"
-    jackets_by_rating.each_with_index do |jacket, idx|
-      puts "#{idx + 1}. #{jacket.name} — #{jacket.water_resistance_rating}/10"
+    jackets_sorted_by_rating.each_with_index do |jacket, idx|
+      puts "#{idx + 1}. #{jacket.name} — #{jacket.send(rating_attribute)}/10"
     end
     puts "-----------------------------------------------------------------"
   end

@@ -13,9 +13,4 @@ class RainJackets::Jacket
     return @@all
   end
   
-  def self.sort_rating_desc(rating_cat)
-    @rating_category = rating_cat
-    ranking = @@all.sort{|left, right| right.rating_category <=> left.rating_category}
-  end
-  
 end
