@@ -1,8 +1,8 @@
 # Rain Jackets
 
-**This is a CLI gem designed by jacqueline-lam.** 
+**This is a Ruby CLI gem designed by jacqueline-lam, as a portfolio project for the Flatiron School Engineering cirriculum.** 
 
-The Ruby Gem provides a CLI to view the best rain jackets of 2019 according to the Outdoor Gear Lab website.
+The Ruby Gem provides a CLI to view the best rain jackets of 2019 according to the Outdoor Gear Lab website (https://www.outdoorgearlab.com/topics/clothing-womens/best-rain-jacket-womens).
 
 ## Installation
 
@@ -24,7 +24,7 @@ Or install it yourself as:
 
 Type the below and follow the on screen prompts.
 
-```$ rain-jackets```
+```$ rain_jackets```
 
 ## Development
 
@@ -35,6 +35,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'jacqueline-lam'/rain_jackets. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Authors
+Jacqueline Lam - @jacqueline-lam
 
 ## License
 
