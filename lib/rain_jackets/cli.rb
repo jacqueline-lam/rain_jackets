@@ -8,8 +8,8 @@ class RainJackets::CLI
   end
  
   def prompt_user_input
-    puts "What would you like to do?"
-    puts "Enter: 'menu' to see all commands / 'exit' to exit program."
+    puts "► What would you like to do?"
+    puts "► Enter: 'menu' to see all commands / 'exit' to exit program."
     call
   end
   
@@ -24,14 +24,12 @@ class RainJackets::CLI
     if input == "all"
       print_list_all
       
-    # elsif 'list by ratings'
-      # list Overall Score
-        # Sort list by overall rating
-        # prompt user to input specific rating categories: "water resistance, breathability, comfort, weight, durability, packed_size_rating"
-        
     elsif (1..5).include?(input.to_i) 
       print_selected_jacket(input.to_i)
       
+    elsif ['wr', 'b', 'c', 'w', 'd', 'ps'].include(input.downcase)
+      print_ratings(input.downcase)
+    
     elsif input == "menu"
       print_menu
       call
@@ -58,19 +56,41 @@ class RainJackets::CLI
   
   def print_selected_jacket(jacket_number)
     jacket = @jackets[jacket_number - 1]
-    puts "------------------- #{jacket.name} -------------------"
+    puts "---------------- #{jacket_number}. #{jacket.name} ----------------"
     puts "• Jacket Description: #{jacket.description}"
+    puts "• Price: #{jacket.price}"
     puts "• Pros: #{jacket.pros}"
     puts "• Cons: #{jacket.cons}"
     puts "• URL: #{jacket.url}"
+    puts "• Overall Rating: #{jacket.overall_rating}/100"
     puts "• Rating Categories:"
-    puts "   - Water Resistance: #{jacket.water_resistance_rating}"
-    puts "  - Breathability: #{jacket.breathability_rating}"
-    puts "  - Comfort: #{jacket.comfort_rating}"
-    puts "  - Weight: #{jacket.weight_rating}"
-    puts "  - Durability: #{jacket.durability_rating}"
-    puts "  - Packed Size: #{jacket.packed_size_rating}"
+    puts "  - Water Resistance: #{jacket.water_resistance_rating}/10"
+    puts "  - Breathability: #{jacket.breathability_rating}/10"
+    puts "  - Comfort: #{jacket.comfort_rating}/10"
+    puts "  - Weight: #{jacket.weight_rating}/10"
+    puts "  - Durability: #{jacket.durability_rating}/10"
+    puts "  - Packed Size: #{jacket.packed_size_rating}/10"
     puts "-----------------------------------------------------------------"
+  end
+  
+  def print_rating_category(rating_input)
+    if rating_input == 'wr'
+      rating_category = "water_resistance_rating"
+    elsif rating_input == 'b'
+      rating_category = "'br'"
+    elsif rating_input == 'c'
+      rating_category = "comfort_rating"
+    elsif rating_input == 'w'
+      rating_category = "weight_rating"
+    elsif rating_input == 'd'
+      rating_category = "durability_rating"
+    elsif rating_input == 'ps'
+      rating_category = "packed_size_rating"
+    else
+      puts "Please try again. Input 1 - 6"
+      rating_input = gets.chomp.to_i
+    end
+
   end
   
   # Display all menu commands
@@ -79,13 +99,14 @@ class RainJackets::CLI
     puts "• List all jackets -> enter 'all'"
     puts "• More information on specific jacket -> enter jacket #'1-5'"
     puts "• List jackets by speific rating category -> enter:"
-    puts "  'wr' for Water Resistance"
-    puts "  'b' for Brethability"
-    puts "  'c' for Comfort"
-    puts "  'w' for Weight"
-    puts "  'd' for Durability"
-    puts "  'ps' for Packed Size" 
+    puts "  'wr' — Water Resistance"
+    puts "  'b' — Brethability"
+    puts "  'c' — Comfort"
+    puts "  'w' — Weight"
+    puts "  'd' — Durability"
+    puts "  'ps' — Packed Size" 
     puts "• Exit program -> enter 'exit'"
     puts "==============================================================="
+    puts "► What would you like to do?"
   end
 end
