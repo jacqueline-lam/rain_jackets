@@ -35,7 +35,7 @@ class RainJackets::CLI
       call
     
     elsif input == "exit"
-      puts "Goodbye! Have a great day!"
+      puts "Goodbye! Hope you found your favorite jacket!"
       exit
       
     else #- make sure that the program doesn't break when user's input is unexpected
