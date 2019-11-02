@@ -4,7 +4,7 @@ class RainJackets::Jacket
 
   @@all = []
 
-  # Take in an argument of an array and sets new jacket's attributes
+  # Add jacket instance into class variable @@all (array)
   def initialize
     @@all << self
   end

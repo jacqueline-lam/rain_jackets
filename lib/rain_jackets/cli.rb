@@ -2,20 +2,22 @@ class RainJackets::CLI
   attr_accessor :jackets
 
   def initialize
+    # store all jacket instances in CLI's instance variable @all
     @jackets = RainJackets::Scraper.initialize_jacket_objects
     puts ""
-    puts "Welcome to the Best Rain Jackets Rater!"
-    prompt_user_input
+    puts "Welcome to the Best Women's Rain Jackets Rater!"
+    prompt_input
   end
 
-  def prompt_user_input
+  # Print instructions to screen and get user input
+  def prompt_input
     puts "► What would you like to do?"
     puts "► Enter: 'menu' to see all commands / 'exit' to exit program."
-    call
+    get_input
   end
 
   # Initiates call procedure to get and handle user input
-  def call
+  def get_input
     input = gets.chomp.strip
     handle_input(input)
   end
@@ -33,28 +35,29 @@ class RainJackets::CLI
 
     elsif input == "menu"
       print_menu
-      call
+      get_input
 
     elsif input == "exit"
       puts "Goodbye! Hope you found your favorite jacket!"
       exit
 
-    else #- make sure that the program doesn't break when user's input is unexpected
+    else # Make sure that the program doesn't break with unexpected user input
       puts "I don't understand that answer. Please try again"
     end
 
-    prompt_user_input
-    call #reinitiate call loop at the end of non-exited handle_input logic
+    prompt_input # Reinitiate get_input loop at the end of non-exited handle_input logic
   end
 
+  # Display all best rain jackets
   def print_list_all
-    puts "---------------------------- Best Rain Jackets of 2019: ------------------------"
+    puts "----------------------- Best Women's Rain Jackets of 2019: -----------------------------"
       @jackets.each_with_index do |jacket, i|
         puts " #{(i+1).to_s}. #{jacket.name.split(" - ").first} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
       end
-    puts "--------------------------------------------------------------------------------"
+    puts "-----------------------------------------------------------------------------------"
   end
 
+  # Display details of chosen jacket
   def print_selected_jacket(jacket_number)
     jacket = @jackets[jacket_number - 1]
     puts "---------------- #{jacket_number}. #{jacket.name} ----------------"
@@ -74,7 +77,7 @@ class RainJackets::CLI
     puts "-----------------------------------------------------------------"
   end
 
-  # Converts user shortcut input to jacket attribute name as string
+  # Convert user shortcut input to jacket attribute name as string
   def read_rating_input(input)
     if input == 'wr'
       rating_category = "water_resistance_rating"
@@ -95,6 +98,7 @@ class RainJackets::CLI
     rating_category
   end
 
+  # Display ranked list based on chosen rating category
   def print_ratings(input)
     rating_attribute = read_rating_input(input)
     jackets_sorted_by_rating = @jackets.sort_by { |jacket| jacket.send(rating_attribute) }.reverse

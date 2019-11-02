@@ -15,10 +15,10 @@ class RainJackets::Scraper
 
       # Product name and URL
       if tr_index == 0
-        # td_value = td_element
         product_name_row = tr_element.css("div.compare_product_name")
 
         product_name_row.each do |td_element|
+          # Initialize a new jacket instance
           new_jacket = RainJackets::Jacket.new
           new_jacket.name = td_element.text
           new_jacket.url = "https://www.outdoorgearlab.com" + td_element.css("a").first.attributes["href"].value
@@ -27,7 +27,10 @@ class RainJackets::Scraper
 
       # Product Price
       elsif tr_index == 2
-        product_price_row = tr_element.css("td.compare_items span").each_with_index do |td_element, td_index|
+        product_price_row = tr_element.css("td.compare_items span")
+        # Iterate through each td_element (column) and
+        # Populate each jacket's price attribute
+        product_price_row.each_with_index do |td_element, td_index|
           td_value = td_element.text
           all_jackets[td_index].price = td_value #price in string "$149.93"
         end
@@ -35,9 +38,10 @@ class RainJackets::Scraper
       # Overall rating
       elsif tr_index == 3
         overall_rating_row = tr_element.css("div.rating_score")
+        # Iterate through each rating_score (column) and
+        # Populate each jacket's overall_rating attribute
         overall_rating_row.each_with_index do |rating_score, rating_row_index|
-          # rating_score.text is an Intergerç
-          all_jackets[rating_row_index].overall_rating = rating_score.text
+          all_jackets[rating_row_index].overall_rating = rating_score.text #an integer
         end
 
       # Pros
@@ -54,14 +58,14 @@ class RainJackets::Scraper
           all_jackets[td_index].cons = td_value
         end
 
-      # Desciption
+      # Description
       elsif tr_index == 7
         description_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
           td_value = td_element.text
           all_jackets[td_index].description = td_value
         end
 
-      # Rating categories (tr_index 11-14): water_resistance_rating, breathability_rating, comfort_rating, weight_rating, packed_size_rating
+      # Rating categories (tr_index 9-14)
       elsif (9..14).include?(tr_index)
         tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
           jacket = all_jackets[rating_row_index]
@@ -85,7 +89,7 @@ class RainJackets::Scraper
         end
       end
     end
-
+    # Returns an array of all 5 jacket instances
     all_jackets
   end
 end
