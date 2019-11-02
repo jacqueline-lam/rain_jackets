@@ -3,6 +3,7 @@ class RainJackets::CLI
   
   def initialize
     @jackets = RainJackets::Scraper.initialize_jacket_objects
+    puts ""
     puts "Welcome to the Best Rain Jackets Rater!"
     prompt_user_input
   end
