@@ -1,7 +1,7 @@
 class RainJackets::CLI
   attr_accessor :jackets
 
-  def initialize
+  def call
     # store all jacket instances in CLI's instance variable @all
     @jackets = RainJackets::Scraper.initialize_jacket_objects
     puts ""
