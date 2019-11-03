@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["'jacqueline.karin.lam@gmail.com'"]
 
   spec.summary       = "CLI for best rain jackets"
-  spec.description   = "Get the details for 2019's best rain jackets from Outdoor Gear Lab."
+  spec.description   = "Get the details for 2019's best rain jackets from Outdoor Gear Lab. Type `gem install rain_jackets` to install gem and type`rain_jackets` to run."
   spec.homepage      = "https://rubygems.org/profiles/jacqueline-lam"
   spec.license       = "MIT"
 
