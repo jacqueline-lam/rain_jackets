@@ -42,7 +42,7 @@ class RainJackets::CLI
       exit
 
     else # Make sure that the program doesn't break with unexpected user input
-      puts "I don't understand that answer. Please try again"
+      puts "I don't understand that answer. Please try again!"
     end
 
     prompt_input # Reinitiate get_input loop at the end of non-exited handle_input logic
@@ -50,6 +50,7 @@ class RainJackets::CLI
 
   # Display all best rain jackets
   def print_list_all
+    puts ""
     puts "----------------------- Best Women's Rain Jackets of 2019: -----------------------------"
       @jackets.each_with_index do |jacket, i|
         puts " #{(i+1).to_s}. #{jacket.name.split(" - ").first} — #{jacket.price} - #{jacket.overall_rating}/100 Overall Rating"
@@ -60,6 +61,7 @@ class RainJackets::CLI
   # Display details of chosen jacket
   def print_selected_jacket(jacket_number)
     jacket = @jackets[jacket_number - 1]
+    puts ""
     puts "---------------- #{jacket_number}. #{jacket.name} ----------------"
     puts "• Jacket Description: #{jacket.description}"
     puts "• Price: #{jacket.price}"
@@ -91,9 +93,6 @@ class RainJackets::CLI
       rating_category = "durability_rating"
     elsif input == 'ps'
       rating_category = "packed_size_rating"
-    else
-      puts "Incorrect input. Please try again."
-      prompt_user_input
     end
     rating_category
   end
@@ -106,15 +105,17 @@ class RainJackets::CLI
     # Convert rating attribute name to readable capitalized title
     rating_category_name = rating_attribute.split('_').map(&:capitalize).join(' ')
 
+    puts ""
     puts "-------------Best Jackets Ranked by #{rating_category_name} ------------------"
     jackets_sorted_by_rating.each_with_index do |jacket, idx|
       puts " #{idx + 1}. #{jacket.name} — #{jacket.send(rating_attribute)}/10"
     end
-    puts "-----------------------------------------------------------------"
+    puts "---------------------------------------------------------------------"
   end
 
   # Display all menu commands
   def print_menu
+    puts ""
     puts "========================== MENU ==============================="
     puts "• List all jackets -> enter 'all'"
     puts "• More information on specific jacket -> enter jacket #'1-5'"
