@@ -2,4 +2,4 @@
 
 require_relative '../config/environment/'
 
-RainJackets::CLI.call
+RainJackets::CLI.new.call
