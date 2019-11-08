@@ -9,7 +9,7 @@ class RainJackets::Jacket
     @@all = jackets.uniq
   end
 
-  # Class method to expose variable @@all
+  # Call on class itself to return all jacket instances
   def self.all
     @@all
   end
