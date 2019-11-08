@@ -2,11 +2,11 @@ class RainJackets::CLI
   attr_accessor :jackets
 
   def call
-    # Calls Scraper class method that will return array of all jacket objects
+    # Calls Scraper class method to create an array of all jacket objects
     # Store all Jacket instances in CLI's instance variable @jackets
     RainJackets::Scraper.initialize_jacket_objects
     @jackets = RainJackets::Jacket.all
-    # Greet user with text input
+    # Greet user
     puts ""
     puts "Welcome to the Best Women's Rain Jackets Rater!"
     prompt_input

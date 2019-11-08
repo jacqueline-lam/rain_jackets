@@ -4,7 +4,7 @@ class RainJackets::Jacket
 
   @@all = []
 
-  # Set class method @@all to equate jackets array created by Scraper
+  # Set class varibale @@all equal to jackets array created by Scraper
   def self.all=(jackets)
     @@all = jackets.uniq
   end
