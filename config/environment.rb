@@ -1,7 +1,9 @@
+# All the required code to initialize the environment
+
 ### REQUIRED GEMS ###
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
+# require 'pry'
 
 ### REQUIRED FILES ###
 require_relative '../lib/rain_jackets/version'

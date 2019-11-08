@@ -1,41 +1,53 @@
 class RainJackets::Scraper
 
+  # Take HTML string returned by open-uri's open method
+  # and convert it into a NodeSet
   def self.get_page
     Nokogiri::HTML(open("https://www.outdoorgearlab.com/topics/clothing-womens/best-rain-jacket-womens"))
   end
 
   def self.scrape_jackets_table
+    # Use CSS selector to grab all HTML elements that contain a table
+    # return array of Nokogiri XML elements representing
+    # table described on scraped webpage
     self.get_page.css("div.content_table_xwide tr")
   end
 
+  # Instantiate jacket objects and assign attributes to each instance
   def self.initialize_jacket_objects
     all_jackets = []
+
     # Determines which row you're on, hence which property you're trying to populate
+    # Iterate through collection of table rows
+
     scrape_jackets_table.each_with_index do |tr_element, tr_index|
 
-      # Product name and URL
+      # Scrape product Name and URL
       if tr_index == 0
+        # Grab the element that contains our desired data
         product_name_row = tr_element.css("div.compare_product_name")
 
+        # Iterate through each of td element and instantiate new jacket
         product_name_row.each do |td_element|
-          # Initialize a new jacket instance
+          # Create a new Jacket instance out of each aray element
+          # instantiating Jacket objects and giving each jacket object the correct attributes
           new_jacket = RainJackets::Jacket.new
-          new_jacket.name = td_element.text
+          new_jacket.name = td_element.text #access text content inside an element scraped by Nokogiri
           new_jacket.url = "https://www.outdoorgearlab.com" + td_element.css("a").first.attributes["href"].value
           all_jackets << new_jacket
         end
 
-      # Product Price
+      # Scrape Price
       elsif tr_index == 2
         product_price_row = tr_element.css("td.compare_items span")
         # Iterate through each td_element (column) and
         # Populate each jacket's price attribute
         product_price_row.each_with_index do |td_element, td_index|
           td_value = td_element.text
-          all_jackets[td_index].price = td_value #price in string "$149.93"
+          all_jackets[td_index].price = td_value # Price in string "$149.93"
         end
 
-      # Overall rating
+      # Scrape Overall Rating
       elsif tr_index == 3
         overall_rating_row = tr_element.css("div.rating_score")
         # Iterate through each rating_score (column) and
@@ -44,28 +56,28 @@ class RainJackets::Scraper
           all_jackets[rating_row_index].overall_rating = rating_score.text #an integer
         end
 
-      # Pros
+      # Scrape Pros
       elsif tr_index == 5
         pros_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
           td_value = td_element.text
           all_jackets[td_index].pros = td_value
         end
 
-      # Cons
+      # Scrape Cons
       elsif tr_index == 6
         pros_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
           td_value = td_element.text
           all_jackets[td_index].cons = td_value
         end
 
-      # Description
+      # Scrape Description
       elsif tr_index == 7
         description_row = tr_element.css("td.compare_items").each_with_index do |td_element, td_index|
           td_value = td_element.text
           all_jackets[td_index].description = td_value
         end
 
-      # Rating categories (tr_index 9-14)
+      # Scrape rating categories if tr_index is between 9-14
       elsif (9..14).include?(tr_index)
         tr_element.css("div.rating_score").each_with_index do |rating_score, rating_row_index|
           jacket = all_jackets[rating_row_index]
@@ -84,12 +96,10 @@ class RainJackets::Scraper
           elsif tr_index == 14
             jacket.packed_size_rating = rating_score
           end
-
-          all_jackets[rating_row_index] = jacket
         end
       end
     end
-    # Returns an array of all 5 jacket instances
-    all_jackets
+    # Store all_jackets array in Jacket class variable @@all
+    RainJackets::Jacket.all = all_jackets
   end
 end

@@ -2,4 +2,5 @@
 
 require_relative '../config/environment/'
 
+# Initiates call procedure to start CLI app
 RainJackets::CLI.new.call

@@ -4,13 +4,13 @@ class RainJackets::Jacket
 
   @@all = []
 
-  # Add jacket instance into class variable @@all (array)
-  def initialize
-    @@all << self
+  # Set class method @@all to equate jackets array created by Scraper
+  def self.all=(jackets)
+    @@all = jackets.uniq
   end
 
-  def self.all # Class method to expose variable @@all
+  # Class method to expose variable @@all
+  def self.all
     @@all
   end
-
 end
