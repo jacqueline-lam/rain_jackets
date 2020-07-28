@@ -1,8 +1,16 @@
 # Rain Jackets
+## Overview
+**This is a Ruby CLI gem designed by jacqueline-lam, as a portfolio project for the Flatiron School Engineering cirriculum.**
 
-**This is a Ruby CLI gem designed by jacqueline-lam, as a portfolio project for the Flatiron School Engineering cirriculum.** 
+The Ruby Gem provides a CLI to view the best rain jackets of 2019 according to the [Outdoor Gear Lab website](https://www.outdoorgearlab.com/topics/clothing-womens/best-rain-jacket-womens).
 
-The Ruby Gem provides a CLI to view the best rain jackets of 2019 according to the Outdoor Gear Lab website (https://www.outdoorgearlab.com/topics/clothing-womens/best-rain-jacket-womens).
+* [Video Demo](https://www.youtube.com/watch?v=RLkE5QlbYXo&t=101s)
+* [Blog Post](https://dev.to/jacquelinelam/building-my-first-project-cli-data-gem-50m4)
+
+## Features
+1. Use Open-URI and Nokogiri to scrape data from third party website
+2. Command Line Interface to accept user input
+3. User can make shopping decisions more easily by getting detailed and tailormade information through queries such as "list jackets by specific rating category
 
 ## Installation
 

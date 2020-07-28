@@ -2,9 +2,9 @@ class RainJackets::CLI
   attr_accessor :jackets
 
   def call
-    # Calls Scraper class method to create an array of all jacket objects
+    # Call Scraper class method to create an array of all jacket objects
     # Store all Jacket instances in CLI's instance variable @jackets
-    RainJackets::Scraper.initialize_jacket_objects
+    RainJackets::Scraper.new.initialize_jacket_objects
     @jackets = RainJackets::Jacket.all
     # Greet user
     puts ""
@@ -24,7 +24,7 @@ class RainJackets::CLI
     handle_input(input)
   end
 
-  # Handles the user pint
+  # Handle user input
   def handle_input(input)
     if input == "all"
       print_list_all
@@ -85,7 +85,7 @@ class RainJackets::CLI
 
   # Convert user input to jacket attribute name string
   def read_rating_input(input)
-    # case statement to run multiple conditions against input value
+    # Case statement to run multiple conditions against input value
     case input
       when 'wr'
         rating_category = "water_resistance_rating"

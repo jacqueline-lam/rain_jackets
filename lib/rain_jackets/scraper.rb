@@ -2,19 +2,19 @@ class RainJackets::Scraper
 
   # Take HTML string returned by open-uri's open method
   # and convert it into a NodeSet
-  def self.get_page
+  def get_page
     Nokogiri::HTML(open("https://www.outdoorgearlab.com/topics/clothing-womens/best-rain-jacket-womens"))
   end
 
-  def self.scrape_jackets_table
+  def scrape_jackets_table
     # Use CSS selector to grab all HTML elements that contain a table
     # return array of Nokogiri XML elements representing
     # table described on scraped webpage
-    self.get_page.css("div.content_table_xwide tr")
+    get_page.css("div.content_table_xwide tr")
   end
 
   # Instantiate jacket objects and assign attributes to each instance
-  def self.initialize_jacket_objects
+  def initialize_jacket_objects
     all_jackets = []
 
     # Determines which row you're on, hence which property you're trying to populate
